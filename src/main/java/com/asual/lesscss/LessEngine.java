@@ -105,8 +105,8 @@ public class LessEngine {
 		throws LessException {
 		long time = System.currentTimeMillis();
 		String result = compiler.compile(input, location == null ? "" : location, compress);
-		logger.debug("The compilation of '" + input + "' took "
-				+ (System.currentTimeMillis() - time) + " ms.");
+		logger.debug("1 The compilation of '" + input + "' took "
+				+ (System.currentTimeMillis() - time) + " ms with " + compiler.getClass());
 		return result;
 	}
 
@@ -120,7 +120,7 @@ public class LessEngine {
 		logger.debug("Compiling URL: " + location);
 		String source = loader.load(getFile(location), getPaths(location), options.getCharset());
 		String result = compiler.compile(source, location, compress);
-		logger.debug("The compilation of '" + input + "' took "
+		logger.debug("2 The compilation of '" + input + "' took "
 				+ (System.currentTimeMillis() - time) + " ms.");
 		return result;
 	}
@@ -136,7 +136,7 @@ public class LessEngine {
 		String source = null;
 		source = loader.load(getFile(location), getPaths(location), options.getCharset());
 		String result = compiler.compile(source, location, compress);
-		logger.debug("The compilation of '" + input + "' took "
+		logger.debug("3 The compilation of '" + input + "' took "
 				+ (System.currentTimeMillis() - time) + " ms.");
 		return result;
 	}

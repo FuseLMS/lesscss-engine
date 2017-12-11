@@ -100,10 +100,10 @@ public class NashornCompiler implements LessCompiler {
 					filename = so.get("filename").toString();
 				}
 				if (so.has("line")) {
-					line = ((Long) so.get("line")).intValue();
+					line = toInt(so.get("line"));
 				}
 				if (so.has("column")) {
-					column = ((Double) so.get("column")).intValue();
+					column = toInt(so.get("column"));
 				}
 				if (so.has("extract")) {
 					NativeArray extract = (NativeArray) so.get("extract");
@@ -123,5 +123,20 @@ public class NashornCompiler implements LessCompiler {
 		}
 		return root;
 	}
+
+    private int toInt(Object v) {
+        if( v instanceof Integer  ){
+            return (int) v;
+        } else if( v instanceof Long) {
+            Long l = (Long) v;
+            return l.intValue();
+        } else if( v instanceof Double) {
+            Double d = (Double) v;
+            return d.intValue();
+        } else {
+            throw new RuntimeException("Unsupported type: " + v);
+        }
+        
+    }
 
 }
